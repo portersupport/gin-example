@@ -22,5 +22,9 @@ jobs:
     - name: Update Porter App
       id: update_porter
       timeout-minutes: 10
-      run: porter update --host https://dashboard.dev.getporter.dev --token ${{ secrets.PORTER_TOKEN_3
-        }} --project 3 --cluster 5 --app test-new-gha
+      run: porter update --app test-new-gha
+      env:
+        PORTER_PROJECT: 3
+        PORTER_CLUSTER: 5
+        PORTER_TOKEN: ${{ secrets.PORTER_TOKEN_3 }}
+        PORTER_HOST: https://dashboard.dev.getporter.dev
