@@ -14,7 +14,7 @@ jobs:
       run: |
         version=v0.6.1
         name=porter-$version.zip
-        curl -L https://github.com/porter-dev/porter/releases/download/${version}/porter_${version}_Darwin_x86_64.zip --output $name
+        curl -L https://github.com/porter-dev/porter/releases/download/${version}/porter_${version}_Linux_x86_64.zip --output $name
         unzip -a $name
         rm $name
         chmod +x ./porter
