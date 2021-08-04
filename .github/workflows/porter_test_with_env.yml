@@ -12,7 +12,7 @@ jobs:
     - name: Download Porter
       id: download_porter
       run: |
-        version=v0.6.1
+        version=v0.6.2
         name=porter-$version.zip
         curl -L https://github.com/porter-dev/porter/releases/download/${version}/porter_${version}_Linux_x86_64.zip --output $name
         unzip -a $name
