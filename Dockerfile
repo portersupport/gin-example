@@ -22,3 +22,4 @@ RUN apk update && apk add git
 COPY --from=build /gin/bin/porter-gin-example /usr/bin/
 
 ENTRYPOINT [ "porter-gin-example" ]
+
