@@ -18,6 +18,7 @@ jobs:
       with:
         app: gin-subpath-test
         cluster: "11"
+        path: ./subpath/
         host: https://dashboard.staging.getporter.dev
         namespace: default
         project: "12"
