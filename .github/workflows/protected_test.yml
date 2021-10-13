@@ -14,7 +14,7 @@ jobs:
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - name: Update the Porter application
         timeout-minutes: 20
-        uses: porter-dev/porter-cli-action@v0.1.0
+        uses: porter-dev/porter-cli-action@3743befec920bb2d7f8a59a4a1c1ff6b3debe8a6
         with:
           command: update --app protected-branch-test --tag ${{ steps.vars.outputs.sha_short }} --dockerfile ./subpath/Dockerfile --stream
         env:
