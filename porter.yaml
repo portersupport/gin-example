@@ -1,0 +1,14 @@
+version: v1
+resources:
+- name: web
+  source:
+    name: web
+  config:
+    build:
+      method: docker
+      context: .
+      dockerfile: ./subpath/Dockerfile
+    values:
+      container:
+        command: web
+        port: 8080
