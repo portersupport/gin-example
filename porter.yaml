@@ -12,3 +12,6 @@ resources:
       container:
         command: web
         port: 8080
+        env:
+          normal:
+            TESTING: 'true'
