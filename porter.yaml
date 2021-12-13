@@ -16,3 +16,4 @@ resources:
           normal:
             TESTING: 'true'
             TESTING2: 'TRUE'
+            TESTING3: 'false'
