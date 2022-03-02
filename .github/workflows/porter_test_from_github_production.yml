@@ -12,14 +12,8 @@ jobs:
     - name: Set Github tag
       id: vars
       run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-    - name: Update Porter App
+    - name: Run Porter test
       timeout-minutes: 20
-      uses: porter-dev/porter-update-action@v0.1.0
-      with:
-        app: test-from-github
-        cluster: "59"
-        host: https://dashboard.staging.getporter.dev
-        namespace: default
-        project: "12"
-        tag: ${{ steps.vars.outputs.sha_short }}
-        token: ${{ secrets.PORTER_TOKEN_PRODUCTION_12 }}
+      run: |
+        /bin/bash -c "$(curl -fsSL https://install.porter.run)"
+        porter version
