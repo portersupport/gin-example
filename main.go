@@ -1,26 +1,31 @@
 package main
 
 import (
-  "fmt"
-  "net/http"
+	"net/http"
+	"os"
+	"time"
 
-  "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 func setupRouter() *gin.Engine {
-  r := gin.Default()
+	time.Sleep(60 * time.Second)
 
-  r.GET("/ping", func(c *gin.Context) {
-    fmt.Println("CLIENT IP IS", c.ClientIP())
+	r := gin.Default()
 
-    c.String(http.StatusOK, "pong")
-  })
+	r.GET("/", func(c *gin.Context) {
+		c.String(http.StatusOK, os.Getenv("PORTER_POD_IMAGE_TAG"))
+	})
 
-  return r
+	r.GET("/ping", func(c *gin.Context) {
+		c.String(http.StatusOK, "pong")
+	})
+
+	return r
 }
 
 func main() {
-  r := setupRouter()
-  // Listen and Server in 0.0.0.0:8080
-  r.Run(":8080")
+	r := setupRouter()
+	// Listen and Server in 0.0.0.0:8080
+	r.Run(":8080")
 }
