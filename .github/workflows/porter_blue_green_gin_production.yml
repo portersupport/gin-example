@@ -28,7 +28,7 @@ jobs:
       with:
         command: deploy blue-green-switch --app blue-green-gin --tag ${{ steps.vars.outputs.sha_short }}
       env:
-        PORTER_HOST: https://dashboard.getporter.dev
+        PORTER_HOST: https://dashboard.dev.getporter.dev
         PORTER_CLUSTER: 34
         PORTER_PROJECT: 3
         PORTER_TOKEN: ${{ secrets.PORTER_TOKEN_PRODUCTION_3 }}
