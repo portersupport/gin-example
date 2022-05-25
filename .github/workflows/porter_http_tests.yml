@@ -17,7 +17,7 @@ jobs:
       uses: porter-dev/porter-update-action@v0.1.0
       with:
         app: http-tests
-        cluster: "1942"
+        cluster: "1871"
         host: https://dashboard.getporter.dev
         namespace: default
         project: "3987"
