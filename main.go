@@ -12,7 +12,7 @@ func setupRouter() *gin.Engine {
 
   r.GET("/ping", func(c *gin.Context) {
     fmt.Println("REQUEST HEADERS ==> ")
-    fmt.Println(c.Request.Headers)
+    fmt.Println(c.Request.Header)
     fmt.Println("CLIENT IP IS", c.ClientIP())
 
     c.String(http.StatusOK, "pong")
