@@ -41,9 +41,9 @@ func setupRouter() *gin.Engine {
 		user := c.MustGet(gin.AuthUserKey).(string)
 		if secret, ok := secrets[user]; ok {
       fmt.Println("Received an authenicated healthcheck.")
-			c.String(http.StatusOK, "check!")
+			c.JSON(http.StatusOK, gin.H{"user": user, "secret": secret})
 		} else {
-			c.String(http.StatusOK, "check didn't work!")
+			c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
 		}
 	})
 
