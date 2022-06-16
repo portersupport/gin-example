@@ -7,8 +7,20 @@ import (
   "github.com/gin-gonic/gin"
 )
 
+// simulate some test accounts
+var secrets = gin.H{
+	"joe":    gin.H{"email": "joe@porter.run"},
+	"ivan": gin.H{"email": "ivan@porter.run"},
+}
+
 func setupRouter() *gin.Engine {
   r := gin.Default()
+  // Group using gin.BasicAuth() middleware
+	// gin.Accounts is a shortcut for map[string]string
+	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
+		"joe":    "bornintheusa",
+		"ivan": "backintheussr",
+	}))
 
   r.GET("/ping", func(c *gin.Context) {
     fmt.Println("REQUEST HEADERS ==> ")
@@ -17,6 +29,23 @@ func setupRouter() *gin.Engine {
 
     c.String(http.StatusOK, "pong")
   })
+  
+  r.GET("/ready", func(c *gin.Context) {
+    fmt.Println("Received an unauthenticated healthcheck.")
+    
+    c.String(http.StatusOK, "check!")
+  })
+  
+  authorized.GET("/readyz", func(c *gin.Context) {
+		// get user, it was set by the BasicAuth middleware
+		user := c.MustGet(gin.AuthUserKey).(string)
+		if secret, ok := secrets[user]; ok {
+      fmt.Println("Received an authenicated healthcheck.")
+			c.String(http.StatusOK, "check!")
+		} else {
+			c.String(http.StatusOK, "check didn't work!")
+		}
+	})
 
   return r
 }
