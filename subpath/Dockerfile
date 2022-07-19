@@ -4,7 +4,7 @@
 FROM golang:1.15.6-alpine3.12 as build
 WORKDIR /gin
 
-RUN apk update && apk add gcc musl-dev
+RUN apk update && apk add gcc musl-dev curl
 
 COPY . .
 
